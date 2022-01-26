@@ -87,6 +87,10 @@ flutter:
         - asset: fonts/Poppins-Bold.ttf
           weight: 700
         - asset: fonts/Poppins-SemiBold.ttf
+        - asset: fonts/Poppins-Regular.ttf
+          weight: 100
+        - asset: fonts/Poppins-Medium.ttf
+          weight: 300
     - family:  Google
       fonts:
         - asset: fonts/Google.ttf
