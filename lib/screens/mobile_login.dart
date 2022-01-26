@@ -65,8 +65,8 @@ class _Mobile_LoginState extends State<Mobile_Login> {
               child: TextField(
                 keyboardType: TextInputType.number,
                 maxLength: 10,
-                cursorColor: Color.fromARGB(255, 141, 140, 140),
-                style: TextStyle(color: Colors.white),
+                cursorColor: const Color.fromARGB(255, 141, 140, 140),
+                style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: const Color(0xFF343131),

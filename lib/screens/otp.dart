@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:otp_text_field/otp_field.dart';
-import 'package:otp_text_field/style.dart';
 
 class Otp extends StatefulWidget {
-  Otp({Key? key}) : super(key: key);
+  const Otp({Key? key}) : super(key: key);
 
   @override
   _OtpState createState() => _OtpState();
@@ -54,8 +52,8 @@ class _OtpState extends State<Otp> {
               child: TextField(
                 keyboardType: TextInputType.number,
                 maxLength: 10,
-                cursorColor: Color.fromARGB(255, 141, 140, 140),
-                style: TextStyle(color: Colors.white),
+                cursorColor: const Color.fromARGB(255, 141, 140, 140),
+                style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: const Color(0xFF343131),
