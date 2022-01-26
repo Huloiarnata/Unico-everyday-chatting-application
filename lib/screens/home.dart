@@ -11,102 +11,85 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        //text
-        Container(
-          padding: const EdgeInsets.fromLTRB(40, 100, 0, 0),
-          child: const Text(
-            "UNICO.",
-            style: TextStyle(
-                color: Color(0xFFFFFFFF),
-                fontWeight: FontWeight.w700,
-                fontFamily: 'Poppins',
-                fontSize: 55),
-          ),
-        ),
-        //image
-        Container(
-          padding: const EdgeInsets.fromLTRB(40, 180, 60, 0),
-          child: SizedBox(
-            height: 300,
-            width: 400,
-            child: FittedBox(
-              child: Image.asset('assets/home/unico-home.png'),
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.only(left: 40, top: 100),
+            child: const Text(
+              "UNICO.",
+              style: TextStyle(
+                  color: Color(0xFFFFFFFF),
+                  fontWeight: FontWeight.w700,
+                  fontFamily: 'Poppins',
+                  fontSize: 55),
             ),
           ),
-        ),
-        //row(logo,continue with google)
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            boxShadow: [
-              BoxShadow(
-                color: const Color.fromARGB(255, 17, 17, 17).withOpacity(0.3),
-                spreadRadius: 7,
-                blurRadius: 7,
-                offset: const Offset(3, 5),
+          Stack(
+            children: <Widget>[
+              Container(
+                //color: Colors.blueGrey,
+                height: 350,
+                width: 300,
+                padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+                child: Image.asset('assets/home/unico-home.png'),
+              ),
+              Container(
+                //color: Colors.blueGrey,
+
+                padding: const EdgeInsets.fromLTRB(30, 240, 0, 0),
+                child: SizedBox(
+                  height: 250,
+                  width: 300,
+                  child: FittedBox(
+                    child: FloatingActionButton.extended(
+                      heroTag: 'b1',
+                      elevation: 6,
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/myscreen');
+                      },
+                      backgroundColor: const Color(0xFF343131),
+                      icon: const Icon(Google.google),
+                      label: const Text(
+                        'Continue With Google',
+                        style: TextStyle(
+                            color: Color(0xFFFFFFFF),
+                            fontWeight: FontWeight.w300,
+                            fontFamily: 'Poppins',
+                            fontSize: 15),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.fromLTRB(30, 340, 0, 0),
+                child: SizedBox(
+                  height: 200,
+                  width: 300,
+                  child: FittedBox(
+                    child: FloatingActionButton.extended(
+                      heroTag: 'b2',
+                      elevation: 6,
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/mobile_login');
+                      },
+                      backgroundColor: const Color(0xFF1D41C0),
+                      icon: const Icon(Icons.phone),
+                      label: const Text(
+                        'Continue With Mobile',
+                        style: TextStyle(
+                            color: Color(0xFFFFFFFF),
+                            fontWeight: FontWeight.w300,
+                            fontFamily: 'Poppins',
+                            fontSize: 15),
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
-          padding: const EdgeInsets.fromLTRB(30, 410, 0, 0),
-          child: SizedBox(
-            height: 250,
-            width: 300,
-            child: FittedBox(
-              child: FloatingActionButton.extended(
-                heroTag: 'b1',
-                elevation: 6,
-                onPressed: () {
-                  Navigator.pushNamed(context, '/myscreen');
-                  // Respond to button press
-                },
-                backgroundColor: const Color(0xFF343131),
-
-                icon: const Icon(Google.google),
-                //image: AssetImage('assets/home/unico-google.png'),
-                //Image(image: AssetImage('assets/home/unico-google.png')),
-                label: const Text(
-                  'Continue With Google',
-                  style: TextStyle(
-                      color: Color(0xFFFFFFFF),
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'Poppins',
-                      fontSize: 15),
-                ),
-              ),
-            ),
-          ),
-        ), //cont
-        //row(icon,continue with mobile)
-        Container(
-          padding: const EdgeInsets.fromLTRB(30, 490, 0, 0),
-          child: SizedBox(
-            height: 250,
-            width: 300,
-            child: FittedBox(
-              child: FloatingActionButton.extended(
-                heroTag: 'b2',
-                elevation: 6,
-                onPressed: () {
-                  Navigator.pushNamed(
-                      context, '/mobile_login'); // Respond to button press
-                },
-                backgroundColor: const Color(0xFF1D41C0),
-                icon: const Icon(Icons.phone),
-                label: const Text(
-                  'Continue With Mobile',
-                  style: TextStyle(
-                      color: Color(0xFFFFFFFF),
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'Poppins',
-                      fontSize: 15),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
+        ]);
   }
 }
