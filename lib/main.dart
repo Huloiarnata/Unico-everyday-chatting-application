@@ -17,15 +17,16 @@ class Unico extends StatefulWidget {
 class _UnicoState extends State<Unico> {
   @override
   Widget build(BuildContext context) {
-    // var height = MediaQuery.of(context).size.height;
-    // var width = MediaQuery.of(context).size.width;
+    //double height = MediaQuery.of(context).size.height;
+    //double width = MediaQuery.of(context).size.width;
     return MaterialApp(
       routes: <String, WidgetBuilder>{
         '/mobile_login': (BuildContext context) => const Mobile_Login(),
-        '/otp': (BuildContext context) => Otp(),
+        '/otp': (BuildContext context) => const Otp(),
         '/myscreen': (BuildContext context) => My_Inbox(),
       },
-      theme: ThemeData(scaffoldBackgroundColor: const Color(0xFF1D1C1C)),
+      theme: ThemeData(
+          scaffoldBackgroundColor: const Color.fromARGB(255, 0, 0, 0)),
       home: const Scaffold(body: Home()),
       debugShowCheckedModeBanner: false,
     );
