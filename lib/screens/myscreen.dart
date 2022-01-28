@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../services/google_sign_in.dart';
 
 class My_Inbox extends StatefulWidget {
-  My_Inbox({Key? key}) : super(key: key);
+  const My_Inbox({Key? key}) : super(key: key);
 
   @override
   _My_InboxState createState() => _My_InboxState();
@@ -93,6 +96,12 @@ class _My_InboxState extends State<My_Inbox> {
                           ),
                           PopupMenuItem(
                             value: 3,
+                            onTap: () {
+                              final provider =
+                                  Provider.of<GoogleSignInProvider>(context,
+                                      listen: false);
+                              provider.logout();
+                            },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: const <Widget>[
