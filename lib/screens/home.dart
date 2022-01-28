@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:unico/widgets/icon.dart';
+import '../services/google_sign_in.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -45,8 +47,11 @@ class _HomeState extends State<Home> {
                     child: FloatingActionButton.extended(
                       heroTag: 'b1',
                       elevation: 6,
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/myscreen');
+                      onPressed: () async {
+                        final provider = Provider.of<GoogleSignInProvider>(
+                            context,
+                            listen: false);
+                        provider.googleLogin();
                       },
                       backgroundColor: const Color(0xFF343131),
                       icon: const Icon(Google.google),
