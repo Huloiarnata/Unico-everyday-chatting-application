@@ -7,7 +7,7 @@ Application SRS Document -> https://whimsical.com/srs-document-UqbpPvBVnEupEMcJg
 ## About Application :
 Bulid on Flutter Framework <br />
 Uses Firebase For backend<br />
-Currently Available For Android<br />
+Will support Android & Ios<br />
 ## Dependencies : 
 -cupertino_icons: ^1.0.2<br />
 -otp_text_field: ^1.1.1<br />
