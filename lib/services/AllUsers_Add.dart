@@ -1,19 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+final _user = FirebaseAuth.instance.currentUser;
+
 void addUser() async {
-  final user = FirebaseAuth.instance.currentUser;
   await FirebaseFirestore.instance
       .collection("All Users")
-      .doc(user?.email)
+      .doc(_user?.email)
       .set({
-        "Name": user?.displayName,
-        "UID": user?.uid,
-        "Number": user?.phoneNumber,
-        "Email": user?.email
+        "Name": _user?.displayName,
+        "UID": _user?.uid,
+        "Number": _user?.phoneNumber,
+        "Email": _user?.email
       })
       .then((value) => print("User Added"))
       .catchError((error) => print("Failed to add user: $error"));
 }
 
-void addPhone() async {}
+void checkPhone() async {
+  DocumentSnapshot userData = await FirebaseFirestore.instance
+      .collection('All Chats')
+      .doc(_user?.email)
+      .get();
+}
