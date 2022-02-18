@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
-
   GoogleSignInAccount? _user;
   GoogleSignInAccount? get user => _user;
-
   Future googleLogin() async {
     final googleUser = await googleSignIn.signIn();
     if (googleUser == null) return;
