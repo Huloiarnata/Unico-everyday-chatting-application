@@ -11,7 +11,7 @@ class My_Inbox extends StatefulWidget {
 }
 
 class _My_InboxState extends State<My_Inbox> {
-  int messages_count = 10;
+  int messages_count = 0;
   final List startinginbox = ['Add Mobile Number', 'Sync Contacts'];
   final List leadingicons = [Icons.mobile_friendly, Icons.cloud];
   final List trailingicons = [
@@ -29,7 +29,7 @@ class _My_InboxState extends State<My_Inbox> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 50),
+            const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -48,7 +48,7 @@ class _My_InboxState extends State<My_Inbox> {
                         fontFamily: 'Poppins',
                         fontSize: 27)),
                 const SizedBox(
-                  width: 26,
+                  width: 40,
                 ),
                 PopupMenuButton(
                     color: const Color.fromARGB(255, 54, 54, 54),
