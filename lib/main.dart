@@ -1,10 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:unico/screens/otp.dart';
-import 'package:unico/services/AllUsers_Add.dart';
+import 'package:unico/services/crud_operation.dart';
 import 'package:unico/services/google_sign_in.dart';
-import 'package:unico/services/streaMerge.dart';
 import 'screens/home.dart';
 import 'package:unico/screens/mobile_login.dart';
 import 'screens/myscreen.dart';
@@ -34,7 +32,7 @@ class _UnicoState extends State<Unico> {
       routes: <String, WidgetBuilder>{
         '/mobile_login': (BuildContext context) => const Mobile_Login(),
         '/otp': (BuildContext context) => const Otp(),
-        '/myscreen': (BuildContext context) => const My_Inbox(),
+        '/myscreen': (BuildContext context) => const Myinbox(),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -55,9 +53,9 @@ class _UnicoState extends State<Unico> {
                         Color.fromARGB(255, 64, 22, 218)),
                   ));
                 } else if (snapshot.hasData) {
-                  final user = FirebaseAuth.instance.currentUser;
                   addUser();
-                  return const My_Inbox();
+                  checkPhone();
+                  return const Myinbox();
                 } else if (snapshot.hasError) {
                   return const Center(child: Text('Something went wrong'));
                 } else {
