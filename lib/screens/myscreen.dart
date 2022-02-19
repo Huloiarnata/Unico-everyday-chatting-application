@@ -3,15 +3,15 @@ import 'package:provider/provider.dart';
 
 import '../services/google_sign_in.dart';
 
-class My_Inbox extends StatefulWidget {
-  const My_Inbox({Key? key}) : super(key: key);
+class Myinbox extends StatefulWidget {
+  const Myinbox({Key? key}) : super(key: key);
 
   @override
-  _My_InboxState createState() => _My_InboxState();
+  _MyinboxState createState() => _MyinboxState();
 }
 
-class _My_InboxState extends State<My_Inbox> {
-  int messages_count = 0;
+class _MyinboxState extends State<Myinbox> {
+  int messagesCount = 0;
   final List startinginbox = ['Add Mobile Number', 'Sync Contacts'];
   final List leadingicons = [Icons.mobile_friendly, Icons.cloud];
   final List trailingicons = [
@@ -41,7 +41,7 @@ class _My_InboxState extends State<My_Inbox> {
                       fontFamily: 'Poppins',
                       fontSize: 35),
                 ),
-                Text(" ($messages_count)",
+                Text(" ($messagesCount)",
                     style: const TextStyle(
                         color: Color(0xFF322EDD),
                         fontWeight: FontWeight.w300,
