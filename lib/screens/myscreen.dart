@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,12 +13,21 @@ class Myinbox extends StatefulWidget {
 }
 
 class _MyinboxState extends State<Myinbox> {
+  final _user = FirebaseAuth.instance.currentUser;
   int messagesCount = 0;
-  final List startinginbox = ['Add Mobile Number', 'Sync Contacts'];
-  final List leadingicons = [Icons.mobile_friendly, Icons.cloud];
+  final List startinginbox = ['Add Mobile Number'];
+  final List leadingicons = [Icons.mobile_friendly];
   final List trailingicons = [
     Icons.keyboard_arrow_right,
-    Icons.keyboard_arrow_right
+  ];
+  final List name = ['Sonu', 'Arin', 'Sanchit', 'Apoorv', 'Dhurv'];
+  final List icon = [
+    Icons.verified_user,
+    Icons.verified_user,
+    Icons.verified_user,
+    Icons.verified_user,
+    Icons.verified_user,
+    Icons.verified_user
   ];
 
   @override
@@ -29,97 +40,109 @@ class _MyinboxState extends State<Myinbox> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 40),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "Messages",
-                  style: TextStyle(
-                      color: Color(0xFFFFFFFF),
-                      fontWeight: FontWeight.w300,
-                      fontFamily: 'Poppins',
-                      fontSize: 35),
-                ),
-                Text(" ($messagesCount)",
-                    style: const TextStyle(
-                        color: Color(0xFF322EDD),
+            const SizedBox(height: 10),
+            SafeArea(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Messages",
+                    style: TextStyle(
+                        color: Color(0xFFFFFFFF),
                         fontWeight: FontWeight.w300,
                         fontFamily: 'Poppins',
-                        fontSize: 27)),
-                const SizedBox(
-                  width: 40,
-                ),
-                PopupMenuButton(
-                    color: const Color.fromARGB(255, 54, 54, 54),
-                    iconSize: 37,
-                    icon: const Icon(
-                      Icons.more_vert,
-                      color: Colors.white,
-                    ),
-                    itemBuilder: (context) => [
-                          PopupMenuItem(
-                            value: 1,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: const <Widget>[
-                                Icon(Icons.person, color: Colors.white),
-                                SizedBox(width: 10),
-                                Text(
-                                  "Profile",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(225, 255, 255, 255),
-                                      fontWeight: FontWeight.w300,
-                                      fontFamily: 'Poppins',
-                                      fontSize: 18),
-                                ),
-                              ],
-                            ),
-                          ),
-                          PopupMenuItem(
-                            value: 2,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: const <Widget>[
-                                Icon(Icons.settings, color: Colors.white),
-                                SizedBox(width: 10),
-                                Text(
-                                  "Settings",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(225, 255, 255, 255),
-                                      fontWeight: FontWeight.w300,
-                                      fontFamily: 'Poppins',
-                                      fontSize: 18),
-                                ),
-                              ],
-                            ),
-                          ),
-                          PopupMenuItem(
-                            value: 3,
-                            onTap: () {
-                              final provider =
-                                  Provider.of<GoogleSignInProvider>(context,
-                                      listen: false);
-                              provider.logout();
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: const <Widget>[
-                                Icon(Icons.logout, color: Colors.white),
-                                SizedBox(width: 10),
-                                Text(
-                                  "Log Out",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(225, 255, 255, 255),
-                                      fontWeight: FontWeight.w300,
-                                      fontFamily: 'Poppins',
-                                      fontSize: 18),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ]),
-              ],
+                        fontSize: 35),
+                  ),
+                  Text(" ($messagesCount)",
+                      style: const TextStyle(
+                          color: Color(0xFF322EDD),
+                          fontWeight: FontWeight.w300,
+                          fontFamily: 'Poppins',
+                          fontSize: 27)),
+                  const SizedBox(
+                    width: 40,
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        showModalBottomSheet(
+                            backgroundColor:
+                                const Color.fromARGB(207, 36, 34, 34),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(30),
+                                    topRight: Radius.circular(30))),
+                            context: context,
+                            builder: (context) {
+                              return Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ListTile(
+                                    leading: const Icon(
+                                      Icons.person_rounded,
+                                      size: 30,
+                                      color: Colors.white,
+                                    ),
+                                    title: const Text(
+                                      "Profile",
+                                      style: TextStyle(
+                                          color: Color.fromARGB(
+                                              159, 255, 255, 255),
+                                          fontWeight: FontWeight.w400,
+                                          fontFamily: 'Poppins',
+                                          fontSize: 20),
+                                    ),
+                                    onTap: () {},
+                                  ),
+                                  ListTile(
+                                    leading: const Icon(
+                                      Icons.settings,
+                                      size: 30,
+                                      color: Colors.white,
+                                    ),
+                                    title: const Text(
+                                      "Settings",
+                                      style: TextStyle(
+                                          color: Color.fromARGB(
+                                              159, 255, 255, 255),
+                                          fontWeight: FontWeight.w400,
+                                          fontFamily: 'Poppins',
+                                          fontSize: 20),
+                                    ),
+                                    onTap: () {},
+                                  ),
+                                  ListTile(
+                                    leading: const Icon(
+                                      Icons.logout_rounded,
+                                      size: 30,
+                                      color: Color.fromARGB(225, 255, 0, 0),
+                                    ),
+                                    title: const Text(
+                                      "Log Out",
+                                      style: TextStyle(
+                                          color: Color.fromARGB(225, 255, 0, 0),
+                                          fontWeight: FontWeight.w400,
+                                          fontFamily: 'Poppins',
+                                          fontSize: 20),
+                                    ),
+                                    onTap: () {
+                                      final provider =
+                                          Provider.of<GoogleSignInProvider>(
+                                              context,
+                                              listen: false);
+                                      provider.logout();
+                                    },
+                                  ),
+                                ],
+                              );
+                            });
+                      },
+                      iconSize: 37,
+                      icon: const Icon(
+                        Icons.more_vert,
+                        color: Colors.white,
+                      ))
+                ],
+              ),
             ),
             Container(
               height: 75,
@@ -160,36 +183,59 @@ class _MyinboxState extends State<Myinbox> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.all(20),
-                scrollDirection: Axis.vertical,
-                itemCount: startinginbox.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    onTap: () {},
-                    leading: Icon(
-                      leadingicons[index],
-                      color: const Color(0xFF699BF7),
-                      size: 27,
-                    ),
-                    /*****TEXT******/
-                    title: Text(
-                      '${startinginbox[index]}',
-                      style: const TextStyle(
-                          color: Color.fromARGB(225, 255, 255, 255),
-                          fontWeight: FontWeight.w300,
-                          fontFamily: 'Poppins',
-                          fontSize: 18),
-                    ),
-                    trailing: Icon(
-                      trailingicons[index],
-                      color: const Color(0xFF699BF7),
-                      size: 27,
-                    ),
-                  );
-                },
-              ),
-            )
+              child: StreamBuilder<DocumentSnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection("All Users")
+                      .doc(_user?.email)
+                      .snapshots(),
+                  builder: (context, userSnapshot) {
+                    if (userSnapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    } else {
+                      if (userSnapshot.hasData) {
+                        final phoneData = userSnapshot.data!['Number'];
+                        return ListView.builder(
+                          padding: const EdgeInsets.all(20),
+                          scrollDirection: Axis.vertical,
+                          itemCount: (phoneData == null)
+                              ? startinginbox.length
+                              : name.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              onTap: () {},
+                              leading: Icon(
+                                (phoneData == null)
+                                    ? leadingicons[index]
+                                    : icon[index],
+                                color: const Color(0xFF699BF7),
+                                size: 27,
+                              ),
+                              /*****TEXT******/
+                              title: Text(
+                                (phoneData == null)
+                                    ? '${startinginbox[index]}'
+                                    : '${name[index]}',
+                                style: const TextStyle(
+                                    color: Color.fromARGB(225, 255, 255, 255),
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'Poppins',
+                                    fontSize: 18),
+                              ),
+                              trailing: const Icon(
+                                Icons.keyboard_arrow_right,
+                                color: Color(0xFF699BF7),
+                                size: 27,
+                              ),
+                            );
+                          },
+                        );
+                      } else {
+                        return const Text("Something Went Wrong !");
+                      }
+                    }
+                  }),
+            ),
           ],
         ),
       ),

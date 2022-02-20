@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:unico/screens/otp.dart';
-import 'package:unico/services/crud_operation.dart';
+import 'package:unico/services/backend.dart';
 import 'package:unico/services/google_sign_in.dart';
 import 'screens/home.dart';
 import 'package:unico/screens/mobile_login.dart';
@@ -53,8 +53,7 @@ class _UnicoState extends State<Unico> {
                         Color.fromARGB(255, 64, 22, 218)),
                   ));
                 } else if (snapshot.hasData) {
-                  addUser();
-                  checkPhone();
+                  Database().addUser();
                   return const Myinbox();
                 } else if (snapshot.hasError) {
                   return const Center(child: Text('Something went wrong'));
