@@ -62,85 +62,88 @@ class _MyinboxState extends State<Myinbox> {
                   const SizedBox(
                     width: 40,
                   ),
-                  IconButton(
-                      onPressed: () {
-                        showModalBottomSheet(
-                            backgroundColor:
-                                const Color.fromARGB(207, 36, 34, 34),
-                            shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(30),
-                                    topRight: Radius.circular(30))),
-                            context: context,
-                            builder: (context) {
-                              return Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  ListTile(
-                                    leading: const Icon(
-                                      Icons.person_rounded,
-                                      size: 30,
-                                      color: Colors.white,
+                  Builder(builder: (context) {
+                    return IconButton(
+                        onPressed: () {
+                          showModalBottomSheet(
+                              backgroundColor:
+                                  const Color.fromARGB(207, 36, 34, 34),
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(30),
+                                      topRight: Radius.circular(30))),
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    ListTile(
+                                      leading: const Icon(
+                                        Icons.person_rounded,
+                                        size: 35,
+                                        color: Colors.white,
+                                      ),
+                                      title: const Text(
+                                        "Profile",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                159, 255, 255, 255),
+                                            fontWeight: FontWeight.w400,
+                                            fontFamily: 'Poppins',
+                                            fontSize: 18),
+                                      ),
+                                      onTap: () {},
                                     ),
-                                    title: const Text(
-                                      "Profile",
-                                      style: TextStyle(
-                                          color: Color.fromARGB(
-                                              159, 255, 255, 255),
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: 'Poppins',
-                                          fontSize: 20),
+                                    ListTile(
+                                      leading: const Icon(
+                                        Icons.settings,
+                                        size: 35,
+                                        color: Colors.white,
+                                      ),
+                                      title: const Text(
+                                        "Settings",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                159, 255, 255, 255),
+                                            fontWeight: FontWeight.w400,
+                                            fontFamily: 'Poppins',
+                                            fontSize: 18),
+                                      ),
+                                      onTap: () {},
                                     ),
-                                    onTap: () {},
-                                  ),
-                                  ListTile(
-                                    leading: const Icon(
-                                      Icons.settings,
-                                      size: 30,
-                                      color: Colors.white,
+                                    ListTile(
+                                      leading: const Icon(
+                                        Icons.logout_rounded,
+                                        size: 35,
+                                        color: Color.fromARGB(225, 255, 0, 0),
+                                      ),
+                                      title: const Text(
+                                        "Log Out",
+                                        style: TextStyle(
+                                            color:
+                                                Color.fromARGB(225, 255, 0, 0),
+                                            fontWeight: FontWeight.w400,
+                                            fontFamily: 'Poppins',
+                                            fontSize: 18),
+                                      ),
+                                      onTap: () {
+                                        final provider =
+                                            Provider.of<GoogleSignInProvider>(
+                                                context,
+                                                listen: false);
+                                        provider.logout();
+                                      },
                                     ),
-                                    title: const Text(
-                                      "Settings",
-                                      style: TextStyle(
-                                          color: Color.fromARGB(
-                                              159, 255, 255, 255),
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: 'Poppins',
-                                          fontSize: 20),
-                                    ),
-                                    onTap: () {},
-                                  ),
-                                  ListTile(
-                                    leading: const Icon(
-                                      Icons.logout_rounded,
-                                      size: 30,
-                                      color: Color.fromARGB(225, 255, 0, 0),
-                                    ),
-                                    title: const Text(
-                                      "Log Out",
-                                      style: TextStyle(
-                                          color: Color.fromARGB(225, 255, 0, 0),
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: 'Poppins',
-                                          fontSize: 20),
-                                    ),
-                                    onTap: () {
-                                      final provider =
-                                          Provider.of<GoogleSignInProvider>(
-                                              context,
-                                              listen: false);
-                                      provider.logout();
-                                    },
-                                  ),
-                                ],
-                              );
-                            });
-                      },
-                      iconSize: 37,
-                      icon: const Icon(
-                        Icons.more_vert,
-                        color: Colors.white,
-                      ))
+                                  ],
+                                );
+                              });
+                        },
+                        iconSize: 37,
+                        icon: const Icon(
+                          Icons.more_vert,
+                          color: Colors.white,
+                        ));
+                  })
                 ],
               ),
             ),
@@ -177,7 +180,7 @@ class _MyinboxState extends State<Myinbox> {
                 "All Chats",
                 style: TextStyle(
                     color: Color.fromARGB(159, 170, 169, 169),
-                    fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.w400,
                     fontFamily: 'Poppins',
                     fontSize: 19),
               ),
@@ -203,7 +206,11 @@ class _MyinboxState extends State<Myinbox> {
                               : name.length,
                           itemBuilder: (context, index) {
                             return ListTile(
-                              onTap: () {},
+                              onTap: () {
+                                if (phoneData == null) {
+                                  Navigator.pushNamed(context, '/otp');
+                                }
+                              },
                               leading: Icon(
                                 (phoneData == null)
                                     ? leadingicons[index]

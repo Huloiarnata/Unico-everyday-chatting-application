@@ -18,7 +18,7 @@ class Database {
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
     await FirebaseFirestore.instance
-        .collection("All Chats")
+        .collection("All Users")
         .doc(_user?.email)
         .collection("All Contacts")
         .add({"name": "yolo"});

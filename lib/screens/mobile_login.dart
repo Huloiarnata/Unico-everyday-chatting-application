@@ -14,7 +14,8 @@ class _Mobile_LoginState extends State<Mobile_Login> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(scaffoldBackgroundColor: const Color(0xFF1D1C1C)),
+      theme: ThemeData(
+          scaffoldBackgroundColor: const Color.fromARGB(255, 0, 0, 0)),
       home: Scaffold(
         body: Stack(
           children: [

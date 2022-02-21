@@ -30,7 +30,7 @@ class _UnicoState extends State<Unico> {
     //double width = MediaQuery.of(context).size.width;
     return MaterialApp(
       routes: <String, WidgetBuilder>{
-        '/mobile_login': (BuildContext context) => const Mobile_Login(),
+        '/mobile_reg': (BuildContext context) => const Mobile_Login(),
         '/otp': (BuildContext context) => const Otp(),
         '/myscreen': (BuildContext context) => const Myinbox(),
       },
@@ -43,7 +43,8 @@ class _UnicoState extends State<Unico> {
           child: StreamBuilder(
               stream: FirebaseAuth.instance.authStateChanges(),
               builder: (context, snapshot) {
-                Provider.of<GoogleSignInProvider>(context, listen: false);
+                final provider =
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
 
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
